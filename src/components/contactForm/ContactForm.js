@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {createContact} from '../../redux/contact/contact-actions';
+import {createContact} from '../../redux/contact/contact-operations';
 
 class ContactForm extends Component {
   state = {

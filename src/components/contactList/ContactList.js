@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteContact } from '../../redux/contact/contact-actions';
+import { deleteContact } from '../../redux/contact/contact-operations';
 
 const ContactList = ({ contacts, deleteContact }) => {
   const onHandleChange = e => {
