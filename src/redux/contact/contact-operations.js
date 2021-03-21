@@ -10,26 +10,28 @@ import {
 
 axios.defaults.baseURL = 'http://localhost:3004';
 
-const createContact = ({ name, number }) => dispatch => {
+const createContact = ({ name, number }) => async dispatch => {
   const contact = {
     name,
     number,
   };
-
   dispatch(createContactRequest());
-
-  axios
-    .post('/contacts', contact)
-    .then(({ data }) => dispatch(createContactSuccess(data)))
-    .catch(error => dispatch(createContactError(error)));
+  try {
+    const { data } = await axios.post('/contacts', contact);
+    dispatch(createContactSuccess(data));
+  } catch (error) {
+    dispatch(createContactError(error));
+  }
 };
 
-const deleteContact = id => dispatch => {
+const deleteContact = id => async dispatch => {
   dispatch(deleteContactRequest());
-  axios
-    .delete(`/contacts/${id}`)
-    .then(() => dispatch(deleteContactSuccess(id)))
-    .catch(error => dispatch(deleteContactError(error)));
+  try {
+    await axios.delete(`/contacts/${id}`);
+    dispatch(deleteContactSuccess(id));
+  } catch (error) {
+    dispatch(deleteContactError(error));
+  }
 };
 
 export { createContact, deleteContact };

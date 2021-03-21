@@ -1,22 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addFilterValue } from '../../redux/contact/contact-actions';
+import { getFilter } from '../../redux/contact/contact-selectors';
 
 const Filter = ({ filter, addFilterValue }) => {
-  const onHandleChange = (e) => {
-    addFilterValue(e.target.value)
-  }
+  const onHandleChange = e => {
+    addFilterValue(e.target.value);
+  };
 
   return (
     <label>
       Find contacts by name
-      <input name="filter" type="text" onChange={onHandleChange} value={filter} />
+      <input
+        name="filter"
+        type="text"
+        onChange={onHandleChange}
+        value={filter}
+      />
     </label>
   );
 };
 
 const mapStateToProps = state => ({
-  filter: state.contact.filter,
+  filter: getFilter(state),
 });
 
 const mapDispatchToProps = dispatch => ({
