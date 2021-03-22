@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {createContact} from '../../redux/contact/contact-operations';
+import {createContact, fetchContacts} from '../../redux/contact/contact-operations';
 
 class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
+
+  componentDidMount (){
+    this.props.fetchContacts();
+  }
 
   handleInput = e => {
     const { name, value } = e.target;
@@ -50,6 +54,7 @@ class ContactForm extends Component {
 const mapDispatchToProps = dispatch => ({
   onCreateContact: ({ name, number }) =>
     dispatch(createContact({ name, number })),
-});
+  fetchContacts: () => dispatch(fetchContacts())
+  });
 
 export default connect(null, mapDispatchToProps)(ContactForm);

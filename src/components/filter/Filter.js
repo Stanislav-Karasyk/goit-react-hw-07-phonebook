@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addFilterValue } from '../../redux/contact/contact-actions';
-import { getFilter } from '../../redux/contact/contact-selectors';
+import { getError, getFilter } from '../../redux/contact/contact-selectors';
 
 const Filter = ({ filter, addFilterValue }) => {
   const onHandleChange = e => {
@@ -23,6 +23,7 @@ const Filter = ({ filter, addFilterValue }) => {
 
 const mapStateToProps = state => ({
   filter: getFilter(state),
+  error: getError(state),
 });
 
 const mapDispatchToProps = dispatch => ({

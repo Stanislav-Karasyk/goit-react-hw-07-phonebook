@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteContact } from '../../redux/contact/contact-operations';
-import { getFilteredContacts, getLoadind} from '../../redux/contact/contact-selectors';
+import { getError, getFilteredContacts, getLoadind} from '../../redux/contact/contact-selectors';
 
 const ContactList = ({ contacts, deleteContact, loading }) => {
   const onHandleChange = e => {
@@ -34,5 +34,6 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   contacts: getFilteredContacts(state),
   loading: getLoadind(state),
+  error: getError(state),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

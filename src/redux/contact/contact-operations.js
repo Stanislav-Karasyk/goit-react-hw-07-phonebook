@@ -1,5 +1,8 @@
 import axios from 'axios';
 import {
+  fetchContactRequest,
+  fetchContactSuccess,
+  fetchContactError,
   createContactRequest,
   createContactSuccess,
   createContactError,
@@ -9,6 +12,16 @@ import {
 } from './contact-actions';
 
 axios.defaults.baseURL = 'http://localhost:3004';
+
+const fetchContacts = () => async dispatch => {
+  dispatch(fetchContactRequest());
+  try {
+    const { data } = await axios.get('/contacts');
+    dispatch(fetchContactSuccess(data));
+  } catch (error) {
+    dispatch(fetchContactError(error));
+  }
+};
 
 const createContact = ({ name, number }) => async dispatch => {
   const contact = {
@@ -34,4 +47,4 @@ const deleteContact = id => async dispatch => {
   }
 };
 
-export { createContact, deleteContact };
+export { fetchContacts, createContact, deleteContact };
