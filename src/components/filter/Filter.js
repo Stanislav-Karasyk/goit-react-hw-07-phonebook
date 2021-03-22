@@ -23,7 +23,6 @@ const Filter = ({ filter, addFilterValue }) => {
 
 const mapStateToProps = state => ({
   filter: getFilter(state),
-  error: getError(state),
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -34,6 +34,5 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => ({
   contacts: getFilteredContacts(state),
   loading: getLoadind(state),
-  error: getError(state),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
